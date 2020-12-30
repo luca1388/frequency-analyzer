@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 import { Alphabet, Letters } from "../App";
+import { device } from "../breakpoints";
 
 interface ChartProps {
   frequencies: Alphabet;
   length: number;
 }
 const ChartContainer = styled.div`
-  width: 60%;
+  width: 70%;
+  @media only screen and ${device.sm}{
+    width: 100%;
+  }
 `;
 const Chart: React.FC<ChartProps> = ({ frequencies, length }) => {
   const array = Object.keys(frequencies).map((item) => ({

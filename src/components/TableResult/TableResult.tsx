@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Alphabet, Letters } from "../../App";
+import { device } from '../../breakpoints';
 
 interface TableResultProps {
   frequencies: Alphabet;
@@ -26,6 +27,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media only screen and ${device.sm} {
+    display: none;
+  }
 `;
 
 const TableResult: React.FC<TableResultProps> = ({

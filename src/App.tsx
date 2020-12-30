@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
+import styled from "styled-components";
 import "./App.css";
+import { device } from "./breakpoints";
 import Chart from "./Chart/Chart";
 import Header from "./components/Header/Header";
 import Layout from "./components/Layout/Layout";
@@ -67,6 +69,34 @@ const initialFrequencies = {
   z: 0,
 };
 
+
+const Title = styled.h2`
+  text-align: left;
+  width: 100%;
+`;
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+`;
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+
+  @media only screen and ${device.xs}{
+    flex-direction: column;
+  }
+
+  @media only screen and ${device.sm}{
+    flex-direction: column;
+  }
+`;
+
 function App() {
   const [frequencies, setFrequencies] = useState<Alphabet>(initialFrequencies);
   const [messageLength, setMessageLength] = useState<number>(0);
@@ -90,10 +120,17 @@ function App() {
     <div className="App">
       <Header />
       <Layout>
-        <h2>Insert your code here:</h2>
-        <Message onType={typeMessageHandler} />
-        <TableResult frequencies={frequencies} messageLength={messageLength} />
-        <Chart frequencies={frequencies} length={messageLength} />
+        <Row>
+          <Column>
+            <Title>Insert your text here:</Title>
+            <Message onType={typeMessageHandler} />
+            <TableResult
+              frequencies={frequencies}
+              messageLength={messageLength}
+            />
+          </Column>
+          <Chart frequencies={frequencies} length={messageLength} />
+        </Row>
       </Layout>
     </div>
   );

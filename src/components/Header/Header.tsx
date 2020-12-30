@@ -4,11 +4,17 @@ const TopBar = styled.header`
   padding: 1rem 1.5rem;
   box-shadow: 2px 2px 5px 1px #888;
   width: 100%;
+  position: fixed;
+  top: 0;
+  height: 5rem;
+  background-color: white;
+  z-index: 1;
 `;
 const InnerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 `;
 const Link = styled.a`
   text-decoration: none;
