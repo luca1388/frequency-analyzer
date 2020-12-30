@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-const Header = () => {
+const Header: React.FC = () => {
   const Header = styled.header`
     padding: 1rem 1.5rem;
     border-bottom: 1px solid #666;
     box-shadow: 2px 2px 5px 1px #888;
+    width: 100%
   `;
   const InnerHeader = styled.div`
     display: flex;
