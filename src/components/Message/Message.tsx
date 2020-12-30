@@ -21,7 +21,6 @@ const Textarea = styled.textarea`
 
 const Message: React.FC<MessageProps> = ({ onType }) => {
   const [text, setText] = useState<string>('');
-  const [char, setChar] = useState<string>('');
 
   const messageChangeHandler = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {

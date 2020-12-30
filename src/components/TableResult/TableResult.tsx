@@ -55,7 +55,7 @@ const TableResult: React.FC<TableResultProps> = ({
           {table.map((letter) => (
             <TableCell key={letter}>
               {frequencies[letter as Letters]
-                ? (messageLength / frequencies[letter as Letters]).toFixed(2)
+                ? (frequencies[letter as Letters] / messageLength).toFixed(2)
                 : 0.00.toFixed(2)}
             </TableCell>
           ))}
