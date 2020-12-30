@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+import { initialFrequencies, Letters } from "../../App";
 
 interface MessageProps {
   onType: (message: string) => void;
@@ -20,17 +21,25 @@ const Textarea = styled.textarea`
 `;
 
 const Message: React.FC<MessageProps> = ({ onType }) => {
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>("");
 
   const messageChangeHandler = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setText(event.target.value);
+      let sanitizedInput = event.target.value
+        .toLowerCase()
+        .trim()
+        .split(" ")
+        .join("");
+      sanitizedInput = Array.from(sanitizedInput)
+        .filter((c) => typeof initialFrequencies[c as Letters] !== "undefined")
+        .join("");
+      setText(sanitizedInput);
     },
     []
   );
 
   useEffect(() => {
-      onType(text);
+    onType(text);
   }, [text, onType]);
 
   return (

@@ -40,7 +40,7 @@ export type Alphabet = {
   [key in Letters]: number;
 };
 
-const initialFrequencies = {
+export const initialFrequencies = {
   a: 0,
   b: 0,
   c: 0,
