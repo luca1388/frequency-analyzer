@@ -1,8 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
 interface MessageProps {
-  text?: string;
+  onType: (message: string) => void;
 }
 
 const Textarea = styled.textarea`
@@ -19,8 +19,9 @@ const Textarea = styled.textarea`
   }
 `;
 
-const Message: React.FC<MessageProps> = ({}) => {
-  const [text, setText] = useState<string>();
+const Message: React.FC<MessageProps> = ({ onType }) => {
+  const [text, setText] = useState<string>('');
+  const [char, setChar] = useState<string>('');
 
   const messageChangeHandler = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -28,6 +29,10 @@ const Message: React.FC<MessageProps> = ({}) => {
     },
     []
   );
+
+  useEffect(() => {
+      onType(text);
+  }, [text, onType]);
 
   return (
     <Textarea
