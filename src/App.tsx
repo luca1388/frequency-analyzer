@@ -116,10 +116,6 @@ function App() {
     setMessageLength(msg.length);
   }, []);
 
-  useEffect(() => {
-    console.log(messageLength);
-  }, [messageLength]);
-
   return (
     <div className="App">
       <Header />
