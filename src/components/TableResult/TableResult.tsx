@@ -5,6 +5,7 @@ import { device } from '../../breakpoints';
 interface TableResultProps {
   frequencies: Alphabet;
   messageLength: number;
+  sort?: boolean;
 }
 
 const Table = styled.table`
@@ -36,9 +37,15 @@ const Container = styled.div`
 const TableResult: React.FC<TableResultProps> = ({
   frequencies,
   messageLength,
+  sort
 }) => {
-  const table = Object.keys(frequencies);
-  console.log(messageLength);
+  let table = Object.keys(frequencies)
+  if (sort) {
+      table = table.sort((a, b) => {
+        return frequencies[a as Letters] > frequencies[b as Letters] ? -1 : 1;
+    });
+  }
+  
   return (
     <Container>
     <Table>

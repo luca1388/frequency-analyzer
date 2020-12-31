@@ -6,6 +6,7 @@ import { device } from "../breakpoints";
 interface ChartProps {
   frequencies: Alphabet;
   length: number;
+  sort?: boolean;
 }
 const ChartContainer = styled.div`
   width: 70%;
@@ -13,13 +14,18 @@ const ChartContainer = styled.div`
     width: 100%;
   }
 `;
-const Chart: React.FC<ChartProps> = ({ frequencies, length }) => {
-  const array = Object.keys(frequencies).map((item) => ({
+const Chart: React.FC<ChartProps> = ({ frequencies, length, sort }) => {
+  let array: {letter: string, frequency: number}[] = Object.keys(frequencies).map((item) => ({
     letter: item,
     frequency: frequencies[item as Letters]
       ? frequencies[item as Letters] / length
       : 0,
   }));
+  if (sort) {
+    array = array.sort((a, b) => {
+      return a.frequency > b.frequency ? -1 : 1;
+  });
+}
 
   return (
     <ChartContainer>
@@ -28,7 +34,7 @@ const Chart: React.FC<ChartProps> = ({ frequencies, length }) => {
         theme={VictoryTheme.material}
         domainPadding={20}
       >
-        <VictoryAxis tickFormat={Object.keys(frequencies)} />
+        <VictoryAxis tickFormat={array.map(x => x.letter)} />
         <VictoryAxis dependentAxis tickFormat={(x: number) => x.toFixed(2)} />
         <VictoryBar data={array} x="letter" y="frequency" />
       </VictoryChart>
