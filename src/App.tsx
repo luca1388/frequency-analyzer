@@ -96,10 +96,14 @@ const Row = styled.div`
     flex-direction: column;
   }
 `;
+const SortButton = styled.button`
+  margin: 20px 0 0;
+`;
 
 function App() {
   const [frequencies, setFrequencies] = useState<Alphabet>(initialFrequencies);
   const [messageLength, setMessageLength] = useState<number>(0);
+  const [sorted, setSorted] = useState<boolean>(false);
 
   const typeMessageHandler = useCallback((msg: string) => {
     let updatedFrequencies: Alphabet = { ...initialFrequencies };
@@ -124,12 +128,14 @@ function App() {
           <Column>
             <Title>Insert your text here:</Title>
             <Message onType={typeMessageHandler} />
+            <SortButton onClick={() => setSorted(previous => !previous)}>{sorted ? 'Sort by alphabet' : 'Sort by frequency'}</SortButton>
             <TableResult
+              sort={sorted}
               frequencies={frequencies}
               messageLength={messageLength}
             />
           </Column>
-          <Chart frequencies={frequencies} length={messageLength} />
+          <Chart sort={sorted} frequencies={frequencies} length={messageLength} />
         </Row>
       </Layout>
     </div>
