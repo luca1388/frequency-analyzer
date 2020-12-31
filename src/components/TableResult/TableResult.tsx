@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Alphabet, Letters } from "../../App";
-import { device } from '../../breakpoints';
+import { device } from "../../breakpoints";
 
 interface TableResultProps {
   frequencies: Alphabet;
@@ -14,13 +14,13 @@ const Table = styled.table`
   margin: 20px 0;
 `;
 const TableRow = styled.tr`
-    height: 30px;
+  height: 30px;
 `;
 const TableRowHeader = styled(TableRow)`
-    background-color: #e6e6e6;
-`
+  background-color: #e6e6e6;
+`;
 const TableCell = styled.td`
-    width: 40px;
+  width: 40px;
 `;
 const Container = styled.div`
   width: 100%;
@@ -37,43 +37,45 @@ const Container = styled.div`
 const TableResult: React.FC<TableResultProps> = ({
   frequencies,
   messageLength,
-  sort
+  sort,
 }) => {
-  let table = Object.keys(frequencies)
+  let table = Object.keys(frequencies);
   if (sort) {
-      table = table.sort((a, b) => {
-        return frequencies[a as Letters] > frequencies[b as Letters] ? -1 : 1;
+    table = table.sort((a, b) => {
+      return frequencies[a as Letters] > frequencies[b as Letters] ? -1 : 1;
     });
   }
-  
+
   return (
     <Container>
-    <Table>
-      <tbody>
-        <TableRowHeader>
-          {/* <RowHeader>-</RowHeader> */}
-          {table.map((letter) => (
-            <th key={letter}>{letter as Letters}</th>
-          ))}
-        </TableRowHeader>
-        <TableRow>
-          {/* <RowHeader>#</RowHeader> */}
-          {table.map((letter) => (
-            <TableCell key={letter}>{frequencies[letter as Letters]}</TableCell>
-          ))}
-        </TableRow>
-        <TableRow>
-          {/* <RowHeader>F</RowHeader> */}
-          {table.map((letter) => (
-            <TableCell key={letter}>
-              {frequencies[letter as Letters]
-                ? (frequencies[letter as Letters] / messageLength).toFixed(2)
-                : 0.00.toFixed(2)}
-            </TableCell>
-          ))}
-        </TableRow>
-      </tbody>
-    </Table>
+      <Table>
+        <tbody>
+          <TableRowHeader>
+            {/* <RowHeader>-</RowHeader> */}
+            {table.map((letter) => (
+              <th key={letter}>{letter as Letters}</th>
+            ))}
+          </TableRowHeader>
+          <TableRow>
+            {/* <RowHeader>#</RowHeader> */}
+            {table.map((letter) => (
+              <TableCell key={letter}>
+                {frequencies[letter as Letters]}
+              </TableCell>
+            ))}
+          </TableRow>
+          <TableRow>
+            {/* <RowHeader>F</RowHeader> */}
+            {table.map((letter) => (
+              <TableCell key={letter}>
+                {frequencies[letter as Letters]
+                  ? (frequencies[letter as Letters] / messageLength).toFixed(2)
+                  : (0.0).toFixed(2)}
+              </TableCell>
+            ))}
+          </TableRow>
+        </tbody>
+      </Table>
     </Container>
   );
 };

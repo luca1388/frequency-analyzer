@@ -12,7 +12,7 @@ const MainContainer = styled.div`
   height: 100vh;
 `;
 
-const Layout: React.FC<LayoutProps> = ({ children }) => <MainContainer>{children}</MainContainer>;
-;
-
+const Layout: React.FC<LayoutProps> = ({ children }) => (
+  <MainContainer>{children}</MainContainer>
+);
 export default Layout;

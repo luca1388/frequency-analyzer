@@ -69,7 +69,6 @@ export const initialFrequencies = {
   z: 0,
 };
 
-
 const Title = styled.h2`
   text-align: left;
   width: 100%;
@@ -88,11 +87,11 @@ const Row = styled.div`
   align-items: center;
   height: 100%;
 
-  @media only screen and ${device.xs}{
+  @media only screen and ${device.xs} {
     flex-direction: column;
   }
 
-  @media only screen and ${device.sm}{
+  @media only screen and ${device.sm} {
     flex-direction: column;
   }
 `;
@@ -124,14 +123,20 @@ function App() {
           <Column>
             <Title>Insert your text here:</Title>
             <Message onType={typeMessageHandler} />
-            <SortButton onClick={() => setSorted(previous => !previous)}>{sorted ? 'Sort by alphabet' : 'Sort by frequency'}</SortButton>
+            <SortButton onClick={() => setSorted((previous) => !previous)}>
+              {sorted ? "Sort by alphabet" : "Sort by frequency"}
+            </SortButton>
             <TableResult
               sort={sorted}
               frequencies={frequencies}
               messageLength={messageLength}
             />
           </Column>
-          <Chart sort={sorted} frequencies={frequencies} length={messageLength} />
+          <Chart
+            sort={sorted}
+            frequencies={frequencies}
+            length={messageLength}
+          />
         </Row>
       </Layout>
     </div>
