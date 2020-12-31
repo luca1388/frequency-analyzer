@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 import { device } from "./breakpoints";
-import Chart from "./Chart/Chart";
+import Chart from "./components/Chart/Chart";
 import Header from "./components/Header/Header";
 import Layout from "./components/Layout/Layout";
 import Message from "./components/Message/Message";

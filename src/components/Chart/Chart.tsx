@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
-import { Alphabet, Letters } from "../App";
-import { device } from "../breakpoints";
+import { Alphabet, Letters } from "../../App";
+import { device } from "../../breakpoints";
 
 interface ChartProps {
   frequencies: Alphabet;
