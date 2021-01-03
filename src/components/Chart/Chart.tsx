@@ -37,7 +37,7 @@ const Chart: React.FC<ChartProps> = ({ frequencies, length, sort }) => {
         domainPadding={20}
       >
         <VictoryAxis tickFormat={array.map((x) => x.letter)} />
-        <VictoryAxis dependentAxis tickFormat={(x: number) => x.toFixed(2)} />
+        <VictoryAxis dependentAxis tickFormat={(x: number) => `${(x * 100).toFixed(2)}%`} />
         <VictoryBar data={array} x="letter" y="frequency" />
       </VictoryChart>
     </ChartContainer>
